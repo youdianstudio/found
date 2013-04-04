@@ -7,9 +7,9 @@ import os.path
 import json
 from tornado.options import define,options
 
-define('port',default=80,help='run on the given port',type=int)
+define('port',default=8888,help='run on the given port',type=int)
 
-MYSQL_DB='found'
+MYSQL_DB='menagerie'
 MYSQL_HOST='127.0.0.1'
 MYSQL_PORT=3306
 MYSQL_USER='root'
@@ -30,11 +30,13 @@ class Application(tornado.web.Application):
 class MainHandler(tornado.web.RequestHandler):
 	def get(self):
 		mdb =tornado.database.Connection("%s:%s"%(MYSQL_HOST,str(MYSQL_PORT)), MYSQL_DB,MYSQL_USER, MYSQL_PASS)
-		query='select * from found '
+		query='select * from pet '
 		results=mdb.query(query)
-		encodedjson=json.dumps(results,ensure_ascii=False,indent=4)
+		#encodedjson=json.dumps(results,ensure_ascii=False,indent=4)
 		
-		self.write(encodedjson)
+		#self.write(encodedjson)
+		self.render('index.html',results=results)
+		
 	
 	def post(self):
 		pass

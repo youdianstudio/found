@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" href="{{static_url('index.css')}}" type="text/css" />
+
+<title>Lost and Found</title>
+<head>
+<body>
+<h1>This is the title.</p>
+<div id="search" align=center>
+<img src={{static_url('images/logo.png')}} />
+</br>
+<table id='hotwords'>
+{{i=0}}
+{% for pet in results %}
+
+<td>{{escape(pet.name)}}</td>
+{% end %}
+</table>
+<form action="list.html" method="get">
+<input type="input" name="keyword" />
+<input type="button" value="Search"/>
+</form>
+</div>
+</body>
+</html>
