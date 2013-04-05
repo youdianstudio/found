@@ -16,9 +16,9 @@
 <td>{{escape(keyword.name)}}</td>
 {% end %}
 </table>
-<form action="list.html" method="post">
-<input type="input" name="keyword" />
-<input type="button" value="Search"/>
+<form action="/search" method="get">
+<input type="input" name="kw" />
+<input type="submit" value="Search"/>
 </form>
 </div>
 </body>
