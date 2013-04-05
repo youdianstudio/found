@@ -11,12 +11,12 @@
 </br>
 <table id='hotwords'>
 {{i=0}}
-{% for pet in results %}
+{% for keyword in keywords %}
 
-<td>{{escape(pet.name)}}</td>
+<td>{{escape(keyword.name)}}</td>
 {% end %}
 </table>
-<form action="list.html" method="get">
+<form action="list.html" method="post">
 <input type="input" name="keyword" />
 <input type="button" value="Search"/>
 </form>
