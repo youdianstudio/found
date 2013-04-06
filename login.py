@@ -1,17 +1,39 @@
+#-*- coding:utf-8 -*-
+
+import hashlib
+import tornado.web
+from sqlalchemy import desc
+
 from base import BaseHandler
+from db import ConnectDB
+from models import User
 
 class LoginHandler(BaseHandler):
 	def get(self):
-		self.render('login.html',dict=None)
+		if self.current_user:
+			self.redirect('/')
+			return 0
+		self.render('login.html',usr=None,error=0)
 	def post(self):
-		name=self.get_argument('name')
+		if self.current_user:
+			self.redirect('/')
+		usr=self.get_argument('usr',default=None)
+		pwd=self.get_argument('pwd',default=None)
+		if not usr or not pwd:
+			self.render('login.html',usr=usr,error=1)
+			return
+		auth=hashlib.sha1(str(usr)+str(pwd)+'lostandfound').hexdigest()
+		query=self.session.query(User).filter_by(auth=auth)
+		if query.count()==0:
+			self.render('login.html',usr=usr,error=2)
+			return
 		print name,'name'
-		self.set_secure_cookie('user',self.get_argument('name'),expires_days=7)
+		self.set_secure_cookie('auth',auth,expires_days=21)# the cookie expires in 21 days
 		self.redirect('/')
 
 class LogoutHandler(BaseHandler):
 	def get(self):
-		self.clear_all_cookies()
+		self.clear_cookie('auth')
 		self.redirect('/')
 	def post(self):
 		pass

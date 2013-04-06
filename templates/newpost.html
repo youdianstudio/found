@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}New Post{% end %}
+
+{% block body %}
+<div class="backstage">
+<div class="nav">
+	Hello {{ current_user.nickname }}. 
+	<a href="/backstage">Backstage</a> | 
+	<a href="/signout">Sign out</a>
+</div>
+{% if error != 0 %}
+<div class="error_msg">
+	{% if error == 1 %}
+	没有填写内容！
+	{% end %}
+</div>
+{% end %}
+<form method="POST" action="">
+    {% raw xsrf_form_html() %}
+    <div class="form_line">
+        <input type="TEXT" name="title" id="compose_title" placeholder="Title" {% if title %}value="{{ title }}"{% end %}/>
+    </div>
+    <div class="form_textarea">
+        <textarea name="content">
+        </textarea>
+    </div>
+    <div class="form_line">
+        <input type="SUBMIT" value="New Post" class="button" />
+    </div>
+</form>
+</div>
+{% end %}

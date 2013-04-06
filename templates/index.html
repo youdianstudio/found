@@ -1,25 +1,17 @@
-<html>
-<head>
-<link rel="stylesheet" href="{{static_url('index.css')}}" type="text/css" />
+{% extends 'base.html' %}
+{% block title %}Lost and Found {% end %}
 
-<title>Lost and Found</title>
-<head>
-<body>
-<h1>This is the title.</p>
+{% block body %}
+
+<h1>This is the title.</h1>
 <div id="search" align=center>
 <img src={{static_url('images/logo.png')}} />
 </br>
-<table id='hotwords'>
-{{i=0}}
-{% for keyword in keywords %}
 
-<td>{{escape(keyword.name)}}</td>
-{% end %}
-</table>
 <form action="/search" method="get">
 <input type="input" name="kw" />
 <input type="submit" value="Search"/>
 </form>
 </div>
-</body>
-</html>
+{% end %}
+

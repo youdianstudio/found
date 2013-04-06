@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ entry.Title }}{% end %}
+
+{% block body %}
+<div class="title">
+	<h1>{{ entry.title }}
+	</h1>
+</div>
+<div class="author">
+	by {{ entry.author.nickname }} on {{ entry.publishtime }}. 
+	{% if current_user %}
+	<a href="/entry/{{ entry.id }}/edit">Edit</a> | 
+	<a href="/entry/{{ entry.id }}/remove">Delete</a>
+	{% end %}
+</div>
+<div class="content" id="entry-{{ entry.id }}-content" >
+    {% raw content %}
+</div>
+{% end %}

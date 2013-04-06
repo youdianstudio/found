@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Post{% end %}
+
+{% block body %}
+
+<div class="nav">
+	Hello {{ current_user.nickname }}. 
+	<a href="/home">Home</a> | 
+	<a href="/logout">Sign out</a>
+</div>
+<form method="POST" action="">
+    {% raw xsrf_form_html() %}
+    <div class="form_line">
+        <input type="TEXT" name="title" id="compose_title" placeholder="Title" value="{{ entry.title }}"/>
+    </div>
+    <div class="form_textarea">
+        <textarea name="content">
+            {{ entry.content }}
+        </textarea>
+    </div>
+    <div class="form_line">
+        <input type="SUBMIT" value="Edit Post" class="button" />
+    </div>
+</form>
+{% end %}
