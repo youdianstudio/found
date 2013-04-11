@@ -1,3 +1,5 @@
+#-*-coding:utf-8 -*-
+
 MYSQL_DB='found'
 MYSQL_HOST='127.0.0.1'
 MYSQL_PORT=3306
