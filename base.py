@@ -17,6 +17,7 @@ class BaseHandler(tornado.web.RequestHandler):
 		if not auth:
 			return None
 		query=self.session.query(User).filter_by(auth=auth)
+		print ' get_current_user executed'
 		if query.count==0:
 			return None
 		return query.one()
