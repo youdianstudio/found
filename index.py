@@ -11,7 +11,6 @@ from tornado.options import define,options
 from models   import createSession
 from home     import urls as homeurls
 from search   import urls as searchurls
-from install  import urls as installurls
 from post     import urls as posturls
 from main    import urls as  mainurls
 
@@ -19,7 +18,7 @@ define('port',default=8888,help='run on the given port',type=int)
 
 class Application(tornado.web.Application):
 	def __init__(self):
-		handlers=posturls+homeurls+searchurls+installurls+mainurls
+		handlers=posturls+homeurls+searchurls+mainurls
 		print handlers
 		settings=dict(
 			cookie_secret='adsdfgdfharjwsewgf23435676ewjkdfrt',
