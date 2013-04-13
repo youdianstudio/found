@@ -8,7 +8,7 @@ from models import User
 
 class InstallHandler(BaseHandler):
 	def get(self):
-		table=self.session.query(Content)
+		table=self.session.query(Post)
 		c=table.count()
 		print c,'ccccc'
 		if table.count()!=0:

@@ -6,9 +6,6 @@ from models import User
 
 class BaseHandler(tornado.web.RequestHandler):
 	@property
-	def db(self):
-		return self.application.db
-	@property
 	def session(self):
 		return self.application.session
 		

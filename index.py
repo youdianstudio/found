@@ -9,7 +9,7 @@ import os.path
 import json
 from tornado.options import define,options
 
-from db import ConnectDB
+from db import createSession
 from settings import *
 from base     import BaseHandler
 from login    import urls as loginurls
@@ -33,7 +33,7 @@ class Application(tornado.web.Application):
 			autoescape=None
 			)
 		tornado.web.Application.__init__(self,handlers,**settings)
-		self.session=ConnectDB()
+		self.session=createSession
 
 def main():
 	tornado.options.parse_command_line()
