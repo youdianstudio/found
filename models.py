@@ -59,15 +59,11 @@ class Post(Base):
 		 		
 Base.metadata.create_all(engine)# create the defined tables
 '''
-we contact with the database by the session
+we communicate with the database by  session
 '''
 def createSession():
 	Session=sessionmaker(bind=engine)
 	session=Session()
 	return session
-session=createSession()
-u=User('name','nickname','auth',datetime.now)
-u.posts=[Post('title one','content one',datetime.now)]
-session.add(u)
-session.commit()
+
 

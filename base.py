@@ -9,7 +9,7 @@ class BaseHandler(tornado.web.RequestHandler):
 	def session(self):
 		return self.application.session
 	
-	def write_error(self,status_code):
+	def write_error(self,status_code,**kwargs):
 		print ' In write_error :',status_code
 		if status_code in [403,404,500,503]:
 			self.write('Error %s' % status_code)
