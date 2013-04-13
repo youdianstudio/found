@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Register{% end %}
+{% block body %} 
+<form  action="/register" method="post">
+{{xsrf_form_html()}}
+<p>User Name:<input type="input" name="usr" value="name"/></p>
+<p>PassWord:<input type="input" name="pwd"  /></p>
+<p>Nick Name:<input type="input" name="nickname"  /></p>
+<p><input type="submit" value="submit" /></p>
+</form>
+{% end %}

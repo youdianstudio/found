@@ -4,26 +4,33 @@
 import datetime
 import tornado.web
 from sqlalchemy import desc
-
+from tornado.web import authenticated
 from base import BaseHandler
 from models import Post
 
 #create a new post
 class NewPostHandler(BaseHandler):
 
-	@tornado.web.authenticated
+	@authenticated
 	def get(self):
 		self.render('newpost.html',title=None,content=None,error=0)
 		
-	@tornado.web.authenticated
+	@authenticated
 	def post(self):
 		title=self.get_argument('title',default='No Title')
 		content=self.get_argument('content',default=None)
 		if not content:
-			self.render('newpost.html',title=title,content=content,error=1)
+			self.render('newpost.html',title=title,content=content,error=1)#content can't be empty
 			return
-		post=Post(title,content,datetime.now)
-
+		elif not title:
+			self.render('newpost.html',title=title,content=content,error=2)# title can't be empty
+			return			
+		user=self.current_user
+		print user
+		user.posts.append(Post(title,content,datetime.datetime.now()))
+		#self.session.add(user)
+		#self.session.commit()
+		self.redirect('/home')
 
 #view the detail of the post		
 class PostDetailHandler(BaseHandler):

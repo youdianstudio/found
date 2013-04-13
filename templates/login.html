@@ -1,5 +1,11 @@
-<form  action="login" method="post">
+
+{% extends 'base.html' %}
+{% block title %}Register{% end %}
+{% block body %} 
+<form  action={{login_url}} method="post">
 {{xsrf_form_html()}}
-<input type="input" name="name" value="name"/>
+<input type="input" name="usr" value="name"/>
+<input type="input" name="pwd"  />
 <input type="submit" value="submit" />
 </form>
+{% end %}

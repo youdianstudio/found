@@ -23,7 +23,7 @@ class BaseHandler(tornado.web.RequestHandler):
 			return None
 		query=self.session.query(User).filter_by(auth=auth)
 		print ' get_current_user executed'
-		if query.count==0:
+		if query.count()==0:
 			return None
 		return query.one()
 		#return self.get_secure_cookie('user')
