@@ -1,4 +1,7 @@
+#-*- coding:utf-8 -*-
+
 import rsa
+
 (pubkey,privkey)=rsa.newKeys(512)
 pub=pubkey.save_pkcs1()
 print 'pub',pub

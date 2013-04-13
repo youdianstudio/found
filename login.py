@@ -5,7 +5,6 @@ import tornado.web
 from sqlalchemy import desc
 
 from base import BaseHandler
-from db import ConnectDB
 from models import User
 
 class LoginHandler(BaseHandler):

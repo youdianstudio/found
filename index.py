@@ -1,6 +1,5 @@
 #-*-coding:utf-8-*-
 
-import tornado.database
 import tornado.escape
 import tornado.ioloop
 import tornado.options
@@ -9,21 +8,18 @@ import os.path
 import json
 from tornado.options import define,options
 
-from db import createSession
-from settings import *
-from base     import BaseHandler
+from models   import createSession
 from login    import urls as loginurls
 from home     import urls as homeurls
 from search   import urls as searchurls
 from install  import urls as installurls
 from post     import urls as posturls
-
+from error    import urls as errorurls
 define('port',default=8888,help='run on the given port',type=int)
 
 class Application(tornado.web.Application):
 	def __init__(self):
-		handlers=posturls+homeurls+loginurls+searchurls+installurls
-		print handlers
+		handlers=posturls+homeurls+loginurls+searchurls+installurls+errorurls
 		settings=dict(
 			cookie_secret='adsdfgdfharjwsewgf23435676ewjkdfrt',
 			template_path=os.path.join(os.path.dirname(__file__),'templates'),

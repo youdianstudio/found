@@ -8,6 +8,14 @@ class BaseHandler(tornado.web.RequestHandler):
 	@property
 	def session(self):
 		return self.application.session
+	
+	def write_error(self,status_code):
+		print ' In write_error :',status_code
+		if status_code in [403,404,500,503]:
+			self.write('Error %s' % status_code)
+		else:
+			self.write('BOOM!')
+		
 		
 	def get_current_user(self):
 		auth=self.get_secure_cookie('auth')
